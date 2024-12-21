@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controller/index')
 
-router.get('/test', controller.getArray)
+router.get('/todos', controller.getArray)
 router.post('/test', controller.postArray)
 
 router.put('/test', function (req, res) {

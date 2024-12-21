@@ -1,20 +1,32 @@
-let array = []
+// import { Todo } from '../models/index';
+const model = require('../models/index');
 
-function getArray (req, res) {
-    return res.json(array);
+async function getArray (req, res) {
+    try {
+        let data = await model.Todo.findAll()
+
+        return res.status(200).json(data)
+    } catch (error) {
+        console.log(error)
+    }
 }
 
-function postArray (req, res) {
-    const { name, age } = req.body
-    array.push({ name: name, age: age })
+async function postArray (req, res) {
+    const { name, description, status } = req.body
+    try {
+        await model.Todo.create({
+            name: name, 
+            description: description,
+            status: status
+        })
 
-    return res.json({ msg: "Created" })
+        return res.status(201).json({ message: "Todo created successfully"})
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 function deleteArray (req, res) {
-    const { index } = req.params
-
-    array.slice(0, index)
     return res.json({ msg: "Deleted" })
 }
 

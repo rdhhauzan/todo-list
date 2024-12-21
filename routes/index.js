@@ -3,12 +3,12 @@ const router = express.Router();
 const controller = require('../controller/index')
 
 router.get('/todos', controller.getArray)
-router.post('/test', controller.postArray)
+router.post('/todo', controller.postArray)
 
-router.put('/test', function (req, res) {
+router.put('/todo:/id', function (req, res) {
     return res.json({ msg: "PUT test message"});
 })
 
-router.delete('/test/:index', controller.deleteArray)
+router.delete('/test/:id', controller.deleteArray)
 
 module.exports = router;
